@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .category h2 {
+            color: #2c3e50;
+        }
+        .blog-post {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+        }
+        .blog-post img {
+            max-width: 150px;
+            margin-right: 20px;
+        }
+        .blog-post .content {
+            flex: 1;
+        }
+        .blog-post h3 {
+            margin: 0 0 10px;
+            color: #3498db;
+        }
+        .blog-post p {
+            margin: 0;
+            color: #555;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto 0;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog Posts</h1>
+        {% for category in categories %}
+            <div class="category">
+                <h2>{{ category.name }}</h2>
+                {% for post in category.blogpost_set.all %}
+                    <div class="blog-post">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                        {% endif %}
+                        <div class="content">
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.summary|truncatewords:15 }}</p>
+                            <p><small>Posted by {{ post.author.username }} on {{ post.created_at }}</small></p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No posts in this category.</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+        <a href="{% url 'dashboard' %}" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

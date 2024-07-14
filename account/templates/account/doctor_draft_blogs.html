@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Draft Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Draft Blog Posts</h1>
+        {% if draft_posts %}
+            <ul>
+            {% for post in draft_posts %}
+                <li>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.summary|truncatewords:30 }}</p>
+                    <p>Category: {{ post.category.name }}</p>
+                    <a href="{% url 'update_blog_post' post.id %}" class="button">Update</a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>You don't have any draft blog posts.</p>
+        {% endif %}
+        <a href="{% url 'dashboard' %}" class="button" style="display: block; text-align: center; margin-top: 20px;">Back to Dashboard</a>
+    </div>
+</body>
+</html>

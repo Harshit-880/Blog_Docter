@@ -1,0 +1,17 @@
+# .gitignore
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__
+
+# Ignore environment variables file
+.env
+
+# Ignore system files
+.DS_Store
+
+# Ignore local development settings (if applicable)
+settings_local.py
+
+# Ignore SQLite database files
+*.sqlite3
