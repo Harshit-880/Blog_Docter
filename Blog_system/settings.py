@@ -123,14 +123,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-I apologize for assuming you were using WhiteNoise. Let's adjust the approach for a setup without WhiteNoise:
+# I apologize for assuming you were using WhiteNoise. Let's adjust the approach for a setup without WhiteNoise:
 
-Update your settings.py:
+# Update your settings.py:
 
-pythonCopyimport os
-from pathlib import Path
+# pythonCopyimport os
+# from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Static files configuration
 STATIC_URL = '/static/'
